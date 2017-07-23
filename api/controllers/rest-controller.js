@@ -1,153 +1,66 @@
 'use strict'
 
 var mongoose = require('mongoose'),
-    media = mongoose.model('Media');
+    mediaM = mongoose.model('Media'),
+    user = mongoose.model('User');
+
+exports.create_user = function(req, res) {
+    var new_user = new user(req.body);
+    new_user.save(function (err, user){
+        if(err)
+            res.send(err);
+        res.json(user)
+    })
+};
+
+exports.read_user = function(req, res) {
+    user.findById(req.params.id, function (err, user) {
+        if(err)
+            res.send(err);
+        res.json(user);
+    });
+};
 
 exports.list_media = function(req, res) {
-    media.find({}, function (err, media) {
+    mediaM.find({}, function (err, media) {
         if(err)
             res.send(err);
         res.json(media);
     });
 };
 
-exports.create_file = function(req, res) {
-    var new_file = new media(req.body);
-    new_file.save(function (err, file) {
+exports.create_media = function(req, res) {
+    var new_media = new mediaM(req.body);
+    new_media.save(function (err, media) {
         if(err)
             res.send(err);
-        res.json(file);
+        res.json(media);
     });
 };
 
-exports.create_audio = function(req, res) {
-    var new_audio = new media(req.body);
-    new_audio.save(function (err, audio) {
-        if(err)
-            res.send(err);
-        res.json(audio);
-    });
-};
-
-exports.create_video = function(req, res) {
-    var new_video = new media(req.body);
-    new_video.save(function (err, video) {
-        if(err)
-            res.send(err);
-        res.json(video);
-    });
-};
-
-exports.create_image = function(req, res) {
-    var new_image = new media(req.body);
-    new_image.save(function (err, image) {
-        if(err)
-            res.send(err);
-        res.json(image);
-    });
-};
-
-exports.read_file = function(req, res) {
-    media.findById(req.params.id, function (err, file) {
+exports.read_media = function(req, res) {
+    mediaM.findById(req.params.id, function (err, media) {
         if(err)
             res.send(err)
-        res.json(file);
+        res.json(media);
     });
 };
 
-exports.read_audio = function(req, res) {
-    media.findById(req.params.id, function (err, audio) {
-        if(err)
-            res.send(err)
-        res.json(audio);
-    });
-};
-
-exports.read_video = function(req, res) {
-    media.findById(req.params.id, function (err, video) {
-        if(err)
-            res.send(err)
-        res.json(video);
-    });
-};
-
-exports.read_image = function(req, res) {
-    media.findById(req.params.id, function (err, image) {
-        if(err)
-            res.send(err)
-        res.json(image);
-    });
-};
-
-exports.update_file = function (req, res) {
-    media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, file) {
+exports.update_media = function (req, res) {
+    mediaM.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, media) {
         if(err)
             res.send(err);
-        res.json(file)
+        res.json(media)
     });
 };
 
-exports.update_audio = function (req, res) {
-    media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, audio) {
-        if(err)
-            res.send(err);
-        res.json(audio)
-    });
-};
-
-exports.update_video = function (req, res) {
-    media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, video) {
-        if(err)
-            res.send(err);
-        res.json(video)
-    });
-};
-
-exports.update_image = function (req, res) {
-    media.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, image) {
-        if(err)
-            res.send(err);
-        res.json(image)
-    });
-};
-
-exports.delete_file = function (req, res) {
-    media.remove({
+exports.delete_media = function (req, res) {
+    mediaM.remove({
         _id: req.params.id
-    }, function (err, file) {
+    }, function (err, media) {
         if(err)
-            res.send(err)
-        res.json({message: 'file deleted!'});
-    });
-};
-
-exports.delete_audio = function (req, res) {
-    media.remove({
-        _id: req.params.id
-    }, function (err, audio) {
-        if(err)
-            res.send(err)
-        res.json({message: 'Audio deleted!'});
-    });
-};
-
-exports.delete_video = function (req, res) {
-    media.remove({
-        _id: req.params.id
-    }, function (err, video) {
-        if(err)
-            res.send(err)
-        res.json({message: 'Video deleted!'});
-    });
-};
-
-exports.delete_image = function (req, res) {
-    media.remove({
-        _id: req.params.id
-    }, function (err, image) {
-        if(err)
-            res.send(err)
-        res.json({message: 'Image deleted!'});
+            res.send(err);
+        res.json({message: 'Media deleted!'});
     });
 };
 

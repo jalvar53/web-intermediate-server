@@ -1,7 +1,17 @@
-'use strict'
+'use strict';
 
 module.exports = function(app) {
-    var mediaUploader = require('../controllers/rest-controller')
+    var mediaUploader = require('../controllers/rest-controller');
+
+    // Create new user
+
+    app.route('/user/new')
+        .post(mediaUploader.create_user);
+
+    // Check old user
+
+    app.route('users')
+        .get(mediaUploader.read_user);
 
     // List all media
 
@@ -10,38 +20,14 @@ module.exports = function(app) {
 
     // Create new media
 
-    app.route('/create-media/file/new')
-        .post(mediaUploader.create_file);
-
-    app.route('/create-media/video/new')
-        .post(mediaUploader.create_video);
-
-    app.route('/create-media/audio/new')
-        .post(mediaUploader.create_audio);
-
-    app.route('/create-media/image/new')
-        .post(mediaUploader.create_image);
+    app.route('/create-media/media/new')
+        .post(mediaUploader.create_media);
 
     // Specific media
 
-    app.route('/create-media/file/:id')
-        .get(mediaUploader.read_file)
-        .put(mediaUploader.update_file)
-        .delete(mediaUploader.delete_file);
+    app.route('/media/:_id')
+        .get(mediaUploader.read_media)
+        .put(mediaUploader.update_media)
+        .delete(mediaUploader.delete_media);
 
-    app.route('/create-media/video/:id')
-        .get(mediaUploader.read_video)
-        .put(mediaUploader.update_video)
-        .delete(mediaUploader.delete_video);
-
-    app.route('/create-media/audio/:id')
-        .get(mediaUploader.read_audio)
-        .put(mediaUploader.update_audio)
-        .delete(mediaUploader.delete_audio);
-
-    app.route('/create-media/image/:id')
-        .get(mediaUploader.read_image)
-        .put(mediaUploader.update_image)
-        .delete(mediaUploader.delete_image);
-
-}
+};

@@ -5,18 +5,23 @@ var express = require('express'),
     Media = require('./api/models/rest-model'),
     bodyParser = require('body-parser');
 
+var cors = require('cors');
+app.use(cors());
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/webDB');
+
+mongoose.connect('mongodb://localhost/webDB',
+    {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+var routes = require('./api/routes/rest-routes');
+routes(app);
+
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 });
-
-var routes = require('./api/routes/rest-routes');
-routes(app);
 
 app.listen(port);
 
