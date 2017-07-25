@@ -14,10 +14,18 @@ exports.create_user = function(req, res) {
 };
 
 exports.read_user = function(req, res) {
-    user.findById(req.params.id, function (err, user) {
+    user.findById(req.params.username, function (err, user) {
+        if(err)
+            res.send(err)
+        res.json(user);
+    });
+};
+
+exports.list_users = function(req, res) {
+    user.find({}, function (err, users) {
         if(err)
             res.send(err);
-        res.json(user);
+        res.json(users);
     });
 };
 
