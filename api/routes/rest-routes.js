@@ -11,11 +11,12 @@ module.exports = function(app) {
     // Edit user
 
     app.route('/user/edit/:_id')
-        .put(uploader.update_user);
+        .put(uploader.update_user)
+        .delete(uploader.delete_user);
 
     // Get one user by username
 
-    app.route('/user/:name')
+    app.route('/user/:username')
         .get(uploader.read_user);
 
     // List all Users

@@ -15,7 +15,6 @@ exports.create_user = function(req, res) {
 
 exports.read_user = function(req, res) {
     user.findOne({'username': req.params.username}, function (err, user) {
-        console.log(user);
         if(err)
             res.send(err);
         res.json(user);
@@ -30,8 +29,18 @@ exports.update_user = function (req, res) {
     });
 };
 
+exports.delete_user = function (req, res) {
+    user.findByIdAndRemove(req.params._id, function (err, user) {
+        if(err)
+            res.send(err);
+        else
+            res.json(user);
+    }).remove();
+};
+
+
+
 exports.list_users = function(req, res) {
-    console.log('hi');
     user.find({}, function (err, users) {
         if(err)
             res.send(err);
