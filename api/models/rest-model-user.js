@@ -13,6 +13,9 @@ var userSchema = new UserSchema({
     username: String,
     password: String,
     email: { type: String, set: toLower }
-});
+},
+    {
+        collection: 'users'
+    });
 
 module.exports = mongoose.model('User', userSchema);

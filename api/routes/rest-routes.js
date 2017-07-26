@@ -8,14 +8,19 @@ module.exports = function(app) {
     app.route('/user/new')
         .post(uploader.create_user);
 
+    // Edit user
+
+    app.route('/user/edit/:_id')
+        .put(uploader.update_user);
+
     // Get one user by username
 
-    app.route('/user/:username')
+    app.route('/user/:name')
         .get(uploader.read_user);
 
     // List all Users
 
-    app.route('/user/all')
+    app.route('/users')
         .get(uploader.list_users);
 
     // List all media

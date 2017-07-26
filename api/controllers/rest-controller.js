@@ -14,14 +14,24 @@ exports.create_user = function(req, res) {
 };
 
 exports.read_user = function(req, res) {
-    user.findById(req.params.username, function (err, user) {
+    user.findOne({'username': req.params.username}, function (err, user) {
+        console.log(user);
         if(err)
-            res.send(err)
+            res.send(err);
         res.json(user);
     });
 };
 
+exports.update_user = function (req, res) {
+    user.findOneAndUpdate({ _id: req.params._id }, req.body, {new: true}, function(err, new_user) {
+        if (err)
+            res.send(err);
+        res.json(new_user);
+    });
+};
+
 exports.list_users = function(req, res) {
+    console.log('hi');
     user.find({}, function (err, users) {
         if(err)
             res.send(err);
@@ -47,29 +57,28 @@ exports.create_media = function(req, res) {
 };
 
 exports.read_media = function(req, res) {
-    mediaM.findById(req.params.id, function (err, media) {
+    mediaM.find({ _id: req.params._id }, function (err, media) {
         if(err)
-            res.send(err)
+            res.send(err);
         res.json(media);
     });
 };
 
 exports.update_media = function (req, res) {
-    mediaM.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function (err, media) {
-        if(err)
+    mediaM.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, media) {
+        if (err)
             res.send(err);
-        res.json(media)
+        res.json(media);
     });
 };
 
 exports.delete_media = function (req, res) {
-    mediaM.remove({
-        _id: req.params.id
-    }, function (err, media) {
+    mediaM.findByIdAndRemove(req.params._id, function (err, media) {
         if(err)
             res.send(err);
-        res.json({message: 'Media deleted!'});
-    });
+        else
+            res.json(media);
+    }).remove();
 };
 
 

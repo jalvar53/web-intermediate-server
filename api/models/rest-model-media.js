@@ -11,6 +11,9 @@ var mediaSchema = new MediaSchema({
     author: String,
     genre: String,
     mediaType: String
-});
+},
+    {
+        collection: 'media'
+    });
 
 module.exports = mongoose.model('Media', mediaSchema);
