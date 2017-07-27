@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 3000,
+    port = 3002,
     mongoose = require('mongoose'),
     media = require('./api/models/rest-model-media'),
     user = require('./api/models/rest-model-user'),
@@ -23,6 +23,6 @@ app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-app.listen(port);
+app.listen(port, '0.0.0.0');
 
 console.log('Restful intermediate server started on port: ', port);
