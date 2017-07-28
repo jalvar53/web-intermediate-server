@@ -7,10 +7,11 @@ var MediaSchema = mongoose.Schema;
 var mediaSchema = new MediaSchema({
     _id: String,
     mediaName: String,
+    url: String,
     description: String,
     author: String,
     genre: String,
-    mediaType: String
+    privacy: String
 },
     {
         collection: 'media'

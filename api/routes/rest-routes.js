@@ -41,4 +41,6 @@ module.exports = function(app) {
         .put(uploader.update_media)
         .delete(uploader.delete_media);
 
+    app.route('/media/byName/:mediaName')
+        .get(uploader.read_mediaByName)
 };

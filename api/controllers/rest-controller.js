@@ -73,6 +73,14 @@ exports.read_media = function(req, res) {
     });
 };
 
+exports.read_mediaByName = function(req, res) {
+    mediaM.find({ mediaName: req.params.mediaName}, function (err, media) {
+        if(err)
+            res.send(err);
+        res.json(media);
+    });
+};
+
 exports.update_media = function (req, res) {
     mediaM.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, media) {
         if (err)
