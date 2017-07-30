@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = 8080,
+    port = 3002,
     mongoose = require('mongoose'),
     media = require('./api/models/rest-model-media'),
     user = require('./api/models/rest-model-user'),
@@ -10,7 +10,7 @@ var cors = require('cors');
 app.use(cors());
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://joseluh:Maximiliano2@ds133221.mlab.com:33221/animal-pics',
+mongoose.connect('mongodb://localhost/webDB',
     {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
