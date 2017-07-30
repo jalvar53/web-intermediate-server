@@ -10,7 +10,7 @@ var cors = require('cors');
 app.use(cors());
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/webDB',
+mongoose.connect('mongodb://10.131.137.157/webDB',
     {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
