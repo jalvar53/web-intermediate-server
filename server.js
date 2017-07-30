@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = 3002,
+    port = 8080,
     mongoose = require('mongoose'),
     media = require('./api/models/rest-model-media'),
     user = require('./api/models/rest-model-user'),
