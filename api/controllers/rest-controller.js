@@ -9,7 +9,7 @@ exports.create_user = function(req, res) {
     new_user.save(function (err, user){
         if(err)
             res.send(err);
-        res.json(user)
+        res.json({message: 'ok'})
     })
 };
 
@@ -34,7 +34,7 @@ exports.delete_user = function (req, res) {
         if(err)
             res.send(err);
         else
-            res.json(user);
+            res.json({message: 'ok'});
     }).remove();
 };
 
@@ -61,7 +61,7 @@ exports.create_media = function(req, res) {
     new_media.save(function (err, media) {
         if(err)
             res.send(err);
-        res.json(media);
+        res.json({message: 'ok'});
     });
 };
 
@@ -94,7 +94,7 @@ exports.delete_media = function (req, res) {
         if(err)
             res.send(err);
         else
-            res.json(media);
+            res.json({message: 'ok'});
     }).remove();
 };
 
