@@ -1,6 +1,6 @@
 # Servidor Web Intermedio
 
-By: José Luis Álvarez Herrera - jalvar53@eafit.edu.co
+Por: José Luis Álvarez Herrera - jalvar53@eafit.edu.co
 
 ## Descripción de la aplicación:
 
@@ -17,7 +17,7 @@ La aplicación tiene tres carpetas fundamentales: Models, Controllers y Routes.
 
 Para información mas detallada del modelo de datos, rutas y controladores, referirse a: https://github.com/jalvar53/WebProject
 
-## Funcionamiento:
+## Ejecución:
 
 Para poner en ejeución el servidor, en modo de desarrollo se usa nodemon para monitorear cambios y reiniciar automáticamente el servidor:
 
